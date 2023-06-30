@@ -13,13 +13,16 @@ import tkinter as tk
 
 
 
-
+#Création de la fenetre
 
 fenetre = tk.Tk()
 fenetre.config(background='#403F3F')
 fenetre.title('HabitTracker')
 fenetre.geometry("800x500")
 
-label_title =
+
+
+
+
 fenetre.mainloop()
 

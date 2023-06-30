@@ -9,7 +9,7 @@ class Habits :
         #Data JJMMAAA
         self.starting_date = starting_date
         self.attributs_ls = [name, iteration, starting_date]
-        pass
+
 
     def add_iteration(self,booleen_value):
         #iteration est un tableau
