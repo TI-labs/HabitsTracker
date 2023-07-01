@@ -7,7 +7,7 @@ from Class import *
 import pandas as pd
 import numpy as np
 from os import stat
-
+from function import *
 
 
 def create_habit(name):
