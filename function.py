@@ -6,8 +6,7 @@
 from Class import *
 import pandas as pd
 import numpy as np
-import datetime
-
+from os import stat
 
 
 
@@ -19,5 +18,8 @@ def create_habit(name):
 
     return Habits(name,[],[day,month,year])
 
+#Fonction vérifiant si un fichier est vide
+def est_fichier_vide(nom_fichier):
+    return stat(nom_fichier).st_size == 0
 
 

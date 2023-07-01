@@ -8,8 +8,21 @@ import pandas as pd
 import numpy as np
 import datetime
 import tkinter as tk
+from function import *
 
 
+#Ouverture du fichier
+
+if est_fichier_vide('data_csv'):
+    working_df = pd.DataFrame()
+else
+    working_df = pd.read_csv('data.csv')
+    
+
+
+#fonction de sauvegarde du df dans le fichier data
+def save_habits():
+    working_df.to_csv('data.csv')
 
 
 
