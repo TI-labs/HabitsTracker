@@ -3,12 +3,14 @@
 # Press ⌃R to execute it or replace it with your code.
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
 
+import customtkinter as ctk
 from Class import *
 import pandas as pd
 import numpy as np
 import datetime
 import tkinter as tk
 from function import *
+
 
 
 #Ouverture du fichier
@@ -28,17 +30,4 @@ def save_habits():
 
 #Création de la fenetre
 
-fenetre = tk.Tk()
-fenetre.config(background='#403F3F')
-fenetre.title('HabitTracker')
-fenetre.geometry("800x500")
-
-btn_creation1 = tk.Button(fenetre, text= "Create habits" )
-
-btn_creation1.pack(anchor='center' )
-
-
-
-
-fenetre.mainloop()
 
