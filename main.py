@@ -45,7 +45,7 @@ main_frame.pack(anchor='center')
 
 ##Création des widjets
 
-button_create_habit = ctk.CTkButton(window, text = "create a habit", width = 100, height = 50)
+button_create_habit = ctk.CTkButton(main_frame, text = "create a habit", width = 100, height = 50)
 button_create_habit.pack(anchor='center')
 
 
@@ -53,10 +53,4 @@ button_create_habit.pack(anchor='center')
 button_create_habit.place()
 
 
-
-
-
-
-
 window.mainloop()
-
