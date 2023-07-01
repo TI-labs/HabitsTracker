@@ -13,11 +13,11 @@ from function import *
 
 #Ouverture du fichier
 
-if est_fichier_vide('data_csv'):
+if est_fichier_vide('data.csv'):
     working_df = pd.DataFrame()
-else
+else:
     working_df = pd.read_csv('data.csv')
-    
+
 
 
 #fonction de sauvegarde du df dans le fichier data
@@ -33,6 +33,9 @@ fenetre.config(background='#403F3F')
 fenetre.title('HabitTracker')
 fenetre.geometry("800x500")
 
+btn_creation1 = tk.Button(fenetre, text= "Create habits" )
+
+btn_creation1.pack(anchor='center' )
 
 
 
