@@ -26,3 +26,10 @@ def est_fichier_vide(nom_fichier):
     return stat(nom_fichier).st_size == 0
 
 
+
+
+
+
+
+#fonctions liées à l'interface
+
