@@ -43,18 +43,22 @@ ctk.set_default_color_theme("themes/NightTrain.json")
 ctk.deactivate_automatic_dpi_awareness()
 
 
+
+#creation des frames
+frame_main = ctk.CTkFrame(window)
+frame_main.pack(expand = True)
+
 #la fonction liée au boutton doit forcément être dans ce fichier
 
 def change_window(): #fonction qui efface le contenu de la fenetre et affiche la page 2
    
     global window
     
-    for widget in frame_main.winfo_children(): #on efface la premiere fenetre
+    for widget in window(): #on efface la premiere fenetre
         widget.pack_forget()
         
-        #pour que le frame prenne la couleur de la fenetre lorsque le boutton disparait
-        frame_main.configure(fg_color = window.cget('fg_color') )
-        window.title('2nd screen')
+    #pour que le frame prenne la couleur de la fenetre lorsque le boutton disparait
+    frame_main.configure(fg_color = window.cget('fg_color') )
         
     #on utilise la fonction new_screen_disp(premiere_page,page_cible) pour afficher la page cible
     new_screen_disp(window,screen2)
@@ -76,6 +80,7 @@ screen2.title('2nd screen')
 
 frame_bis = ctk.CTkFrame(screen2,width = 800, height = 500)
 frame_bis.pack()
+
 button_bis = ctk.CTkButton(frame_bis)
 button_bis.pack()
 
@@ -85,9 +90,10 @@ button_bis.pack()
 
 #Création des widjets
 
-button_create_habit = ctk.CTkButton(window , text = "Create habits", width = 150, height = 75, font=("calibri",20))
+button_create_habit = ctk.CTkButton(frame_main, text = "Create habits", width = 150, height = 75, 
+                                    font=("calibri",20),bg_color=window.cget('fg_color'))
 
-button_create_habit.place(relx=0.43, rely=0.4)
+button_create_habit.pack()
 
 
 

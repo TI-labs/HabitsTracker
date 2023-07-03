@@ -55,6 +55,22 @@ def get_widgets_and_frames(top_level):
 
 
 
+#fonction cloner_widget
+#permet de cloner un widget sur le master = fenetre_cible
+
+def cloner_widget(widget,fenetre_cible):
+    # Obtenir le type de widget
+    widget_type = type(widget)
+    
+    
+    options = widget.config()
+    
+    options = {key: widget.cget(key) for key in options.keys() if widget.cget(key)}
+    
+    clone_widget = widget_type(fenetre_cible.master, **options)
+    
+    return clone_widget
+
 
 
 
@@ -65,6 +81,6 @@ def get_widgets_and_frames(top_level):
            
 def new_screen_disp(window,target_screen):
     widgets_target, frames_target = get_widgets_and_frames(target_screen)
-    print(widgets_target, frames_target)
+    
       
             
