@@ -54,13 +54,13 @@ def change_window(): #fonction qui efface le contenu de la fenetre et affiche la
    
     global window
     
-    for widget in window(): #on efface la premiere fenetre
+    for widget in frame_main.winfo_children(): #on efface la premiere fenetre
         widget.pack_forget()
         
     #pour que le frame prenne la couleur de la fenetre lorsque le boutton disparait
     frame_main.configure(fg_color = window.cget('fg_color') )
         
-    #on utilise la fonction new_screen_disp(premiere_page,page_cible) pour afficher la page cible
+    #on utilise la fonction new_screen_disp(remiere_page,page_cible) pour afficher la page cible
     new_screen_disp(window,screen2)
         
     
@@ -72,7 +72,7 @@ def change_window(): #fonction qui efface le contenu de la fenetre et affiche la
 
 #attention, on utilise des toplevels et non des windows, les toplevels se comportent pareil
 
-screen2=ctk.CTkToplevel(window)
+screen2=ctk.CTkToplevel()
 screen2.withdraw()
 screen2.geometry("800x500")
 screen2.title('2nd screen')
@@ -91,7 +91,7 @@ button_bis.pack()
 #Création des widjets
 
 button_create_habit = ctk.CTkButton(frame_main, text = "Create habits", width = 150, height = 75, 
-                                    font=("calibri",20),bg_color=window.cget('fg_color'))
+                                    font=("calibri",20),bg_color=window.cget('fg_color'),command=change_window)
 
 button_create_habit.pack()
 
