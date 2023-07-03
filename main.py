@@ -35,7 +35,7 @@ window.geometry("800x500")
 
 
 ##choix du style + scaling
-ctk.set_default_color_theme("themes/NightTrain.json")
+ctk.set_default_color_theme("themes/Greengage.json")
 ctk.deactivate_automatic_dpi_awareness()
 
 
