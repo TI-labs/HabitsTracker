@@ -48,6 +48,15 @@ ctk.deactivate_automatic_dpi_awareness()
 frame_main = ctk.CTkFrame(window)
 frame_main.pack(expand = True)
 
+
+#création des pages
+
+
+
+
+
+
+
 #la fonction liée au boutton doit forcément être dans ce fichier
 
 def change_window(): #fonction qui efface le contenu de la fenetre et affiche la page 2
@@ -60,10 +69,9 @@ def change_window(): #fonction qui efface le contenu de la fenetre et affiche la
     #pour que le frame prenne la couleur de la fenetre lorsque le boutton disparait
     frame_main.configure(fg_color = window.cget('fg_color') )
         
-    #on utilise la fonction new_screen_disp(remiere_page,page_cible) pour afficher la page cible
-    new_screen_disp(window,screen2)
-        
     
+        
+    #on affiche la page 2
     
     
 

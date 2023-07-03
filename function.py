@@ -55,10 +55,10 @@ def get_widgets_and_frames(top_level):
 
 
 
-#fonction cloner_widget
+#fonction clone_widget
 #permet de cloner un widget sur le master = fenetre_cible
 
-def cloner_widget(widget,fenetre_cible):
+def clone_widget(widget,fenetre_cible):
     # Obtenir le type de widget
     widget_type = type(widget)
     
@@ -74,13 +74,7 @@ def cloner_widget(widget,fenetre_cible):
 
 
 
-#fonction new_screen_disp
-#qui permet d'afficher un target_screen (préfait) sur une fenetre vide
-#target_screen est un ctk.CTkToplevel object
 
-           
-def new_screen_disp(window,target_screen):
-    widgets_target, frames_target = get_widgets_and_frames(target_screen)
     
       
             
