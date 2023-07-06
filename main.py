@@ -44,8 +44,10 @@ ctk.deactivate_automatic_dpi_awareness()
 
 
 
+
+
 #creation des frames
-frame_main = ctk.CTkFrame(window)
+frame_main = ctk.CTkFrame(screen2_0)
 frame_main.pack(expand = True)
 
 
@@ -78,19 +80,13 @@ def change_window(): #fonction qui efface le contenu de la fenetre et affiche la
     
 #Création des screens
 
-#attention, on utilise des toplevels et non des windows, les toplevels se comportent pareil
-
-screen2=ctk.CTkToplevel()
-screen2.withdraw()
-screen2.geometry("800x500")
-screen2.title('2nd screen')
+screen2_0 = Page(window,text_label='')
+screen2_1 = Page(window,text_label='')
 
 
-frame_bis = ctk.CTkFrame(screen2,width = 800, height = 500)
-frame_bis.pack()
 
-button_bis = ctk.CTkButton(frame_bis)
-button_bis.pack()
+
+#screen2_0.place(x=0, y=0)
 
 
 

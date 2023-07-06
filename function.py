@@ -72,9 +72,62 @@ def clone_widget(widget,fenetre_cible):
     return clone_widget
 
 
+#animations 
 
-
+# fonctions de transitions
 
     
       
-            
+def start_transition(page1, page2, direction='e'):
+    # Masquer les boutons
+    #for widget in page1.widgets:
+       # widget.place_forget()
+
+    # Lancer la transition dans la direction donnée
+    transition_progress = 0
+    transition_direction = 1
+    transition_step(page1, page2, direction, transition_progress, transition_direction)
+
+def transition_step(page1, page2, direction, transition_progress, transition_direction):
+    # Calculer les nouvelles positions des pages en fonction de la direction
+    if direction == "n":
+        page1_y = -transition_progress * 500
+        page2_y = 500 - transition_progress * 500
+        page1_x = 0
+        page2_x = 0
+    elif direction == "s":
+        page1_y = transition_progress * 500
+        page2_y = -500 + transition_progress * 500
+        page1_x = 0
+        page2_x = 0
+    elif direction == "o":
+        page1_y = 0
+        page2_y = 0
+        page1_x = -transition_progress * 800
+        page2_x = 800 - transition_progress * 800   
+    elif direction == "e":
+        page1_y = 0
+        page2_y = 0
+        page1_x = transition_progress * 800
+        page2_x = -800 + transition_progress * 800
+    else:
+        return
+
+    # Déplacer les pages
+    page1.place_configure(x=page1_x, y=page1_y)
+    page2.place_configure(x=page2_x, y=page2_y)
+
+    # Mettre à jour la transition
+    transition_progress += 0.02
+
+    # Vérifier si la transition est terminée
+    if transition_progress <= 1:
+        # La transition n'est pas terminée
+        page1.after(20, lambda: transition_step(page1, page2, direction, transition_progress, transition_direction))
+    else:
+        # La transition est terminée, afficher page 2 et réinitialiser les paramètres
+        page1.place_forget()
+        page2.place(x=0, y=0)
+        page2.label.place(relx=0.5, rely=0.5, anchor='center')
+        transition_progress = 0
+        transition_direction = -1
