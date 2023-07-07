@@ -78,7 +78,7 @@ def clone_widget(widget,fenetre_cible):
 
     
       
-def start_transition(page1, page2, direction='e'):
+def start_transition(page1, page2, direction='o'):
     # Masquer les boutons
     #for widget in page1.widgets:
        # widget.place_forget()
@@ -114,11 +114,11 @@ def transition_step(page1, page2, direction, transition_progress, transition_dir
         return
 
     # Déplacer les pages
-    page1.place_configure(x=page1_x, y=page1_y)
-    page2.place_configure(x=page2_x, y=page2_y)
+    page1.place(x=page1_x, y=page1_y)
+    page2.place(x=page2_x, y=page2_y)
 
     # Mettre à jour la transition
-    transition_progress += 0.02
+    transition_progress += 0.035
 
     # Vérifier si la transition est terminée
     if transition_progress <= 1:
@@ -129,5 +129,6 @@ def transition_step(page1, page2, direction, transition_progress, transition_dir
         page1.place_forget()
         page2.place(x=0, y=0)
         page2.label.place(relx=0.5, rely=0.5, anchor='center')
+        page2.place_configure(relwidth=1,relheight=1)
         transition_progress = 0
         transition_direction = -1

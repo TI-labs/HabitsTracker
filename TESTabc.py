@@ -1,6 +1,7 @@
 import customtkinter as ctk
 import random
 import time
+
 from Class import *
 from function import *
 
@@ -19,9 +20,9 @@ ctk.deactivate_automatic_dpi_awareness()
 def enter_event():
     global habits_name
     
-    habits_name = create_habit_entry.get()
+    habits_name = habits_name_entry.get()
     if len(habits_name)!=0:
-        create_habit_entry.configure(state = 'disabled')
+        habits_name_entry.configure(state = 'disabled')
         window.after(300,lambda: start_transition(page, page2))
 
 
@@ -67,51 +68,68 @@ def move_widgets():
 
 #page
 
-page= Page(window,text_label='')
-page.configure(bg_color=window.cget('fg_color'))
+page = Page(window)
+page.configure(bg_color = window.cget('fg_color'))
+page.configure(border_color = 'white',border_width = 1)
 
-page2= Page(window,text_label='page 2')
-page2.configure(bg_color='red')
-page2.configure(fg_color='red')
 
-page.grid(row=1,column=1,sticky="nswe")
+page2 = Page(window)
+page2.configure(border_color = 'white',border_width = 1)
+
+
+
+page3 = Page(window)
+page3.configure(border_color = 'white',border_width = 1)
+
+
+
+
+page.place(relheight=1, relwidth=1)
+
+
+
+
+
+
 #widgets
 
 
-create_habit_label = ctk.CTkLabel(page, text = 'Name it', font=('calibri',20,'bold'))
+habits_name_label = ctk.CTkLabel(page, text = 'Name it', font=('calibri',20,'bold'))
+
+habits_name_entry = ctk.CTkEntry(page,placeholder_text = "Brush my teeth",justify = "center")
 
 
-create_habit_entry = ctk.CTkEntry(page,placeholder_text = "Brush my teeth",justify = "center")
+
+validation_time_label = ctk.CTkLabel(page2, text = 'Validation time', font = ('calibri',20,'bold'))
+
+
+
+
 
 
 
  
+
 #entry event
-create_habit_entry.bind("<KeyPress-Return>" ,lambda event: enter_event())
-
-
-#creating grid
-
-for i in range (3):
-    window.grid_rowconfigure(i,weight = 1)
-    window.grid_columnconfigure(i,weight = 1)
+habits_name_entry.bind("<KeyPress-Return>" ,lambda event: enter_event())
 
 
 
-for i in range (499):
-    page.grid_rowconfigure(i,weight = 1)
 
 
-page.grid_columnconfigure(0, weight = 1)
-page.grid_columnconfigure(1, weight = 1)
-page.grid_columnconfigure(2, weight = 1)
 
 
-#placement
+#placement page 1
 
-create_habit_label.grid(row =1 ,column = 1, )
+habits_name_label.place(relx=0.5,rely=0.3, anchor='center')
 
-create_habit_entry.grid(row =200 ,column = 1, sticky = "ns")
+habits_name_entry.place(relx=0.5,rely=0.4, anchor='center')
+
+
+
+#placement page 2
+
+validation_time_label.place(relx=0.5,rely=0.3, anchor='center')
 
 
 
