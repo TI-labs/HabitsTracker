@@ -118,7 +118,7 @@ def transition_step(page1, page2, direction, transition_progress, transition_dir
     page2.place(x=page2_x, y=page2_y)
 
     # Mettre à jour la transition
-    transition_progress += 0.035
+    transition_progress += 0.04
 
     # Vérifier si la transition est terminée
     if transition_progress <= 1:

@@ -18,13 +18,17 @@ ctk.deactivate_automatic_dpi_awareness()
 #fontions
 
 def enter_event():
-    global habits_name
+    global habits_name,habits_name_label
     
     habits_name = habits_name_entry.get()
+   
     if len(habits_name)!=0:
         habits_name_entry.configure(state = 'disabled')
         window.after(300,lambda: start_transition(page, page2))
-
+    else:
+        
+        move_widgets2(habits_name_label)
+        
 
 def move_widgets():
     # Fonction pour déplacer le label de manière animée
@@ -63,9 +67,40 @@ def move_widgets():
     animate()
 
 
-    
+def move_widgets2(widget):
+        
+        global window
+        
+        h = 0
+        
+        window.update()
 
-
+        x_pos = widget.winfo_x()
+        y_pos = widget.winfo_y()
+        
+        initial_placement = widget.place_info()
+        
+        widget.place_forget()
+        window.after(200)
+        while h < 1:
+            x_bis = random.uniform(-2, 2)
+            y_bis = random.uniform(-2, 2)
+           
+            
+            widget.place_configure(x = x_pos + x_bis, y = y_pos + y_bis)
+            
+            window.after(50)
+            window.update()
+            widget.place_configure(x = x_pos , y = y_pos )
+            
+            h += 0.08
+        
+        
+        widget.place_configure(**initial_placement)
+        
+        
+        
+        
 #page
 
 page = Page(window)
@@ -126,10 +161,11 @@ habits_name_label.place(relx=0.5,rely=0.3, anchor='center')
 habits_name_entry.place(relx=0.5,rely=0.4, anchor='center')
 
 
-
 #placement page 2
 
 validation_time_label.place(relx=0.5,rely=0.3, anchor='center')
+
+
 
 
 
