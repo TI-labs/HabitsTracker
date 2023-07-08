@@ -93,7 +93,7 @@ def move_widgets2(widget):
             window.update()
             widget.place_configure(x = x_pos , y = y_pos )
             
-            h += 0.08
+            h += 0.1
         
         
         widget.place_configure(**initial_placement)
@@ -136,7 +136,6 @@ habits_name_entry = ctk.CTkEntry(page,placeholder_text = "Brush my teeth",justif
 
 
 validation_time_label = ctk.CTkLabel(page2, text = 'Validation time', font = ('calibri',20,'bold'))
-
 
 
 
