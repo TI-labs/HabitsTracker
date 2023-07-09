@@ -23,8 +23,10 @@ def enter_event():
     habits_name = habits_name_entry.get()
    
     if len(habits_name)!=0:
+        habits_name_entry.unbind("<KeyPress-Return>")
         habits_name_entry.configure(state = 'disabled')
         window.after(300,lambda: start_transition(page, page2))
+        enter_page2_1()
     else:
         
         move_widgets2(habits_name_label)
@@ -119,7 +121,7 @@ page3.configure(border_color = 'white',border_width = 1)
 
 
 
-page.place(relheight=1, relwidth=1)
+page.place(relheight = 1, relwidth = 1)
 
 
 
@@ -142,7 +144,9 @@ validation_time_label = ctk.CTkLabel(page2, text = 'Validation time', font = ('c
 
 
 
- 
+def maj_pressed(event):    ##savoir si la  touche maj est activée
+    if event.state == 2  :  
+        print('la touche maj est activé')
 
 #entry event
 habits_name_entry.bind("<KeyPress-Return>" ,lambda event: enter_event())
@@ -153,19 +157,139 @@ habits_name_entry.bind("<KeyPress-Return>" ,lambda event: enter_event())
 
 
 
+
+
+
 #placement page 1
 
-habits_name_label.place(relx=0.5,rely=0.3, anchor='center')
+habits_name_label.place(relx = 0.5,rely = 0.3, anchor = 'center')
 
-habits_name_entry.place(relx=0.5,rely=0.4, anchor='center')
+habits_name_entry.place(relx = 0.5,rely = 0.4, anchor = 'center')
 
 
 #placement page 2
 
-validation_time_label.place(relx=0.5,rely=0.3, anchor='center')
+validation_time_label.place(relx = 0.5,rely = 0.3, anchor = 'center')
 
 
 
+hours_1 = '0'
+hours_2 = '0'
+minutes_1 = '0'
+minutes_2 = '0'
 
 
+time_disp = ctk.CTkLabel(page2, text = str(hours_1) + str(hours_2) + ' : ' +
+                         str(minutes_1) + str(minutes_2),font = ('calibri',36))
+time_disp.place(relx = 0.5,rely = 0.4,anchor = "center")
+
+
+x_hours = 0 #cette variable pour savoir quel nombbre on modifie
+
+def check_entry(event): #event assoc à la modif de l heure 
+    global hours_1 , hours_2 , minutes_1 , minutes_2,x_hours
+    
+    
+    numbers = [str(x) for x in range(10)]
+    
+    if event.keysym in numbers :
+        
+        if x_hours == 0:
+            
+                
+            hours_2 = event.keysym
+            time_disp.configure(text = str(hours_1) + str(hours_2) + ' : ' + 
+                                    str(minutes_1) + str(minutes_2))
+            x_hours += 1 
+            window.unbind("<Keypress>")
+            enter_page2_1()
+            
+        elif x_hours == 1:
+            
+            hours_1 = event.keysym
+            time_disp.configure(text = str(hours_1) + str(hours_2) + ' : ' + 
+                                    str(minutes_1) + str(minutes_2))
+            x_hours += 1 
+            enter_page2_1()
+            
+        elif x_hours == 2:
+            
+            minutes_2 = event.keysym
+            time_disp.configure(text = str(hours_1) + str(hours_2) + ' : ' + 
+                                    str(minutes_1) + str(minutes_2))
+            x_hours += 1 
+            enter_page2_1() 
+            
+        elif x_hours == 3:
+            
+            minutes_1 = event.keysym
+            time_disp.configure(text = str(hours_1) + str(hours_2) + ' : ' + 
+                                     str(minutes_1) + str(minutes_2))
+            
+            enter_page2_1() 
+        window.unbind("<Keypress>")
+            
+    elif event.keysym == "BackSpace":
+        
+        
+        if x_hours == 0:
+            
+            hours_2='0'
+            
+            time_disp.configure(text = str(hours_1) + str(hours_2) + ' : ' + 
+                                    str(minutes_1) + str(minutes_2))
+            window.unbind("<Keypress>")
+            enter_page2_1()
+            
+        elif x_hours == 1:
+            
+            hours_1 = "0"
+            x_hours -= 1
+            time_disp.configure(text = str(hours_1) + str(hours_2) + ' : ' + 
+                                    str(minutes_1) + str(minutes_2))
+            window.unbind("<Keypress>")
+            enter_page2_1()
+            
+        elif x_hours == 2:
+            
+            minutes_2 = '0'
+            x_hours -= 1
+            time_disp.configure(text = str(hours_1) + str(hours_2) + ' : ' + 
+                                    str(minutes_1) + str(minutes_2))
+            window.unbind("<Keypress>")
+            enter_page2_1()
+            
+        elif x_hours == 3:
+            
+            minutes_1 = '0'
+            x_hours -= 1
+            time_disp.configure(text = str(hours_1) + str(hours_2) + ' : ' + 
+                                    str(minutes_1) + str(minutes_2))
+            window.unbind("<Keypress>")
+            enter_page2_1()    
+    elif event.keysym == 'Return':
+       
+        if x_hours == 0 or x_hours == 1:
+            x_hours = 2
+            window.unbind("<Keypress>")
+            enter_page2_1()
+        
+        
+        
+        
+def enter_page2_1(): #quand on est dans la page 2 (fonction inutile mais on la garde)
+    if x_hours == 2 or x_hours == 3:
+        
+        window.bind('<KeyPress-Return>',enter_page2_2)
+
+
+
+    else:
+        window.bind("<KeyPress>", check_entry)
+
+def enter_page2_2(event):
+    window.unbind("<KeyPress>")
+    window.unbind('<KeyPress-Return>')
+    start_transition(page2, page3)
+    
 window.mainloop()

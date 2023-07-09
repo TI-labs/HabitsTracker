@@ -132,3 +132,5 @@ def transition_step(page1, page2, direction, transition_progress, transition_dir
         page2.place_configure(relwidth=1,relheight=1)
         transition_progress = 0
         transition_direction = -1
+
+
